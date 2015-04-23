@@ -1,0 +1,370 @@
+/* BOOTSTRAP 3.x GLOBAL STYLES
+-------------------------------------------------- */
+body {
+    color: #5a5a5a;
+    height: 100%;
+}
+
+.hasfooter {
+    padding-bottom: 40px;
+}
+
+html {
+    height: 100%;
+}
+
+.black {
+    color: BLACK
+}
+
+.center {
+    text-align:center
+}
+
+.table {
+    border:1px solid #e1e1e1
+}
+
+.fill {
+    height: 100%;
+}
+
+/* note content body
+-------------------------------------------------- */
+#editor {
+    width: 100%;
+    height: 100%;
+    overflow:scroll;
+}
+
+#show {
+    
+}
+
+/* NOTE PAGE
+-------------------------------------------------- */
+.note-wrapper{
+    height: 100%;
+    background: ;
+}
+
+.note-head {
+    height: auto;
+}
+
+.note-body {
+    margin-top: -50px;
+    padding-top: 50px;
+    height: 95%;
+}
+
+.note-footer {
+    height: 5%;
+}
+
+.note-aside {
+    width:15%;
+    height: 100%;
+    float: left;
+    border: 1px solid #e1e1e1;
+    background: #ffffff;
+}
+
+.note-aside-top {
+    padding: 0 6px;
+    height:15%;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.note-aside-body {
+    padding: 0 6px;
+    height:85%;
+    overflow:auto;
+}
+
+.note-list {
+    background: #ffffff;
+    float: left;
+    width:15%;
+    height:100%;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.note-list-top {
+    padding: 0 6px;
+    height:15%;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.note-list-body {
+    height:85%;
+    overflow:auto;
+}
+
+.note-list-content {
+    max-height: 20%;
+    min-height: 20%;
+    background: #f6f6f6;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.note-content {
+    background: #ffffff;
+    float:left;
+    width:70%;
+    height:100%;
+    border: 1px solid #e1e1e1;
+}
+
+.note-content-top {
+    padding: 0 6px;
+    height:15%;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.note-content-body {
+    height:85%;
+    overflow:auto;
+}
+
+/* SIGNIN FORM
+-------------------------------------------------- */
+.signin-form {
+    max-width: 500px;
+    margin: 100px auto auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1); 
+}
+
+.signin-head {
+    border: 1px solid #e1e1e1;
+    margin-bottom: 35px;
+    border: 1px solid #e1e1e1
+    background: #f6f6f6;
+    padding: 15px 35px;
+}
+
+.signin-footer {
+    padding-bottom: 35px;
+    padding: 15px 35px;
+}
+
+.signin-body {
+    padding: 15px 35px;
+    margin-bottom: 20px;
+}
+
+.signin-body input{
+    height: auto;
+    padding: 11px 18px;
+    background: #f6f6f6;
+    border: 1px solid #bbb;
+    width:100%
+}
+
+.signin-body input[type="text"] {
+    
+}
+
+.signin-body input[type="password"] {
+}
+
+/* SIGNUP FORM
+-------------------------------------------------- */
+.signup-form {
+    max-width: auto;
+    margin: 100px auto auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.signup-head {
+    border: 1px solid #e1e1e1;
+    margin-bottom: 35px;
+    border: 1px solid #e1e1e1
+    background: #f6f6f6;
+    padding: 15px 35px;
+}
+
+.signup-footer {
+    padding-bottom: 35px;
+    padding: 15px 35px;
+}
+
+.signup-body {
+    margin-bottom: 35px;
+    
+}
+
+.signup-body table {
+    width: 100%;
+}
+
+.signup-body table tbody tr td input {
+    width: 80%;
+    padding: 15px;
+    margin-left: 10%;
+}
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 1;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 400px;
+  background-color:#555;
+}
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 400px;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Pad the edges of the mobile views a bit */
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+.featurette {
+  padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+  overflow: hidden; /* Vertically center images part 2: clear their floats. */
+}
+.featurette-image {
+  margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+/* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Remve the edge padding needed for mobile */
+  .marketing {
+    padding-left: 0;
+    padding-right: 0;
+    padding-right: 0;
+  }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    
+  }
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+}
+
+/* REWRITE BOOTSTRAP.CSS
+-------------------------------------------------- */
+
+.well-font {
+    font-family:monospace;
+    
+}
+
+.white {
+    color:#f6f6f6;
+}
+
+.title-font {
+    font-weight: bold;
+    font-size: 
+}
+
+
+.hand-cursor {
+    cursor:pointer;
+}
+
+.icon:hover {
+    background: #439d44;
+}
+
+.icon: {
+    border: #000;
+    border-radius: 1px;
+}
+
+.test {
+}
+
+
+
