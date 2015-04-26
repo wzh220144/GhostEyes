@@ -63,7 +63,7 @@ html {
 }
 
 .note-aside {
-    width:15%;
+    width:10%;
     height: 100%;
     float: left;
     border: 1px solid #e1e1e1;
@@ -72,20 +72,20 @@ html {
 
 .note-aside-top {
     padding: 0 6px;
-    height:15%;
-    border-bottom: 1px solid #e1e1e1;
+    height:0%;
+    /*border-bottom: 1px solid #e1e1e1;*/
 }
 
 .note-aside-body {
     padding: 0 6px;
-    height:85%;
+    height:100%;
     overflow:auto;
 }
 
 .note-list {
     background: #ffffff;
     float: left;
-    width:15%;
+    width:10%;
     height:100%;
     border-top: 1px solid #e1e1e1;
     border-bottom: 1px solid #e1e1e1;
@@ -93,12 +93,12 @@ html {
 
 .note-list-top {
     padding: 0 6px;
-    height:15%;
+    height:5%;
     border-bottom: 1px solid #e1e1e1;
 }
 
 .note-list-body {
-    height:85%;
+    height:95%;
     overflow:auto;
 }
 
@@ -112,19 +112,19 @@ html {
 .note-content {
     background: #ffffff;
     float:left;
-    width:70%;
+    width:80%;
     height:100%;
     border: 1px solid #e1e1e1;
 }
 
 .note-content-top {
     padding: 0 6px;
-    height:15%;
+    height:5%;
     border-bottom: 1px solid #e1e1e1;
 }
 
 .note-content-body {
-    height:85%;
+    height:95%;
     overflow:auto;
 }
 

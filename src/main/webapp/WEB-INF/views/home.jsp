@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </ol>
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="#" style="width:100%" class="img-responsive">
+                    <img src="<%=path %>/resources/media/img/1.jpg" style="width:100%" class="img-responsive">
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Walk With You.</h1>
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                 </div>
                 <div class="item">
-                    <img src="#" style="width:100%" class="img-responsive">
+                    <img src="<%=path %>/resources/media/img/2.jpg" style="width:100%" class="img-responsive">
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Walk With You.</h1>
@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                 </div>
                 <div class="item">
-                    <img src="#" style="width:100%" class="img-responsive">
+                    <img src="<%=path %>/resources/media/img/3.jpg" style="width:100%" class="img-responsive">
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Walk With You.</h1>
@@ -101,57 +101,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="container marketing">
 
             <!-- Three columns of text below the carousel -->
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <img class="img-circle" src="http://placehold.it/140x140">
+            
+                <div class="row text-center">
+                    <img class="img-circle" src="<%=path %>/resources/media/img/4.png">
                     <h2>Mobile-first</h2>
                     <p>Tablets, phones, laptops. The new 3 promises to be mobile friendly from the start.</p>
-                    <p><a class="btn btn-default" href="#">View details »</a></p>
+           
                 </div>
-                <div class="col-md-4 text-center">
-                    <img class="img-circle" src="http://placehold.it/140x140">
-                    <h2>One Fluid Grid</h2>
-                    <p>There is now just one percentage-based grid for Bootstrap 3. Customize for fixed widths.</p>
-                    <p><a class="btn btn-default" href="#">View details »</a></p>
+               
+                <div class="row text-center">
+                    <img class="img-circle" src="<%=path %>/resources/media/img/5.png">
+                    <h2>Record-anywhere</h2>
+                    <p>Record everything you want whereever you are. Walknote help you store your memory.</p>
                 </div>
-                <div class="col-md-4 text-center">
-                    <img class="img-circle" src="http://placehold.it/140x140">
-                    <h2>LESS is More</h2>
-                    <p>Improved support for mixins make the new Bootstrap 3 easier to customize.</p>
-                    <p><a class="btn btn-default" href="#">View details »</a></p>
-                </div>
-            </div><!-- /.row -->
+      
 
 
-            <!-- START THE FEATURETTES -->
-
-            <hr class="featurette-divider">
-
-            <div class="featurette">
-                <img class="featurette-image img-circle pull-right" src="http://placehold.it/512">
-                <h2 class="featurette-heading">Responsive Design. <span class="text-muted">It'll blow your mind.</span></h2>
-                <p class="lead">In simple terms, a responsive web design figures out what resolution of device it's being served on. Flexible grids then size correctly to fit the screen.</p>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="featurette">
-                <img class="featurette-image img-circle pull-left" src="http://placehold.it/512">
-                <h2 class="featurette-heading">Smaller Footprint. <span class="text-muted">Lightweight.</span></h2>
-                <p class="lead">The new Bootstrap 3 promises to be a smaller build. The separate Bootstrap base and responsive.css files have now been merged into one. There is no more fixed grid, only fluid.</p>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="featurette">
-                <img class="featurette-image img-circle pull-right" src="http://placehold.it/512">
-                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Flatness.</span></h2>
-                <p class="lead">A big design trend for 2013 is "flat" design. Gone are the days of excessive gradients and shadows. Designers are producing cleaner flat designs, and Bootstrap 3 takes advantage of this minimalist trend.</p>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <!-- /END THE FEATURETTES -->
+          
 
         </div><!-- /.container -->
         

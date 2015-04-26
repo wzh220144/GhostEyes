@@ -27,19 +27,36 @@ public class NoteController {
 	@Autowired
 	private NoteBookDao noteBookDao;
 	
-	//delete a note
-	@RequestMapping(value = "/note/delete/{articleid}", method = RequestMethod.POST)
-	public void deleteNote(@PathVariable Integer articleid, Model model) {		
+	
+	//recover a note
+	@RequestMapping(value = "/note/recover/{articleid}", method = RequestMethod.POST)
+	public void recoverNote(@PathVariable Integer articleid, Model model) {
 		Note note = noteDao.loadByArticleid(articleid);
-		noteDao.delete(note);
+		Date now = new Date();
+		note.setStat(0);
+		note.setLastEditDate(now);
+		noteDao.save(note);
 		model.addAttribute("status", "success");
 	}
 	
-	//recycle a note
-	@RequestMapping(value = "/note/recycle/{articleid}", method = RequestMethod.POST)
+	//delete a note
+	@RequestMapping(value = "/note/delete/{articleid}", method = RequestMethod.POST)
 	public void recycleNote(@PathVariable Integer articleid, Model model) {		
 		Note note = noteDao.loadByArticleid(articleid);
-		noteDao.recycle(note);
+		Date now = new Date();
+		//if first delete this note
+		if(note.getStat() == 0) {
+			noteDao.recycle(note);
+		}
+		//if you want to delete forever(second time delete)
+		else {
+			//update notebook
+			NoteBook noteBook = noteBookDao.loadByNbid(note.getNbid());
+			noteBook.setNt_Count(noteBook.getNt_Count() - 1);
+			noteBook.setLastEditDate(now);
+			noteBookDao.save(noteBook);
+			noteDao.delete(note);
+		}
 		model.addAttribute("status", "success");
 	}
 	
@@ -63,25 +80,55 @@ public class NoteController {
 	
 	//save a note
 	@RequestMapping(value = "/note", method = RequestMethod.POST) 
-	public void save(Note note, String notebook, Integer usrid, Model model) {
+	public void save(Note note, String notebook, Integer usrid, Integer noteid, Model model) {
+		
+		//now date
 		Date now = new Date();
+		
+		//get the notebook
 		NoteBook noteBook = noteBookDao.loadByNameAndUsrid(notebook, usrid);
-		if(noteBook == null) {
-			noteBook = new NoteBook(usrid, notebook, 1, now, now);
+		if(noteBook == null) {	//if it is a new notebook
+			noteBook = new NoteBook(usrid, notebook, 0, now, now);
 		}
-		else {
+		
+		//if it is a note
+		if(noteid == -1) {
+			//save notebook
 			noteBook.setNt_Count(noteBook.getNt_Count() + 1);
 			noteBook.setLastEditDate(now);
-			
+			noteBookDao.save(noteBook);	//save the notebook
+			//save note
+			note.setStat(0);
+			note.setCreateDate(now);
+			note.setLastEditDate(now);
+			note.setNbid(noteBook.getNbid());
+			note.setUsrid(usrid);
+			noteDao.save(note);
 		}
-		noteBookDao.save(noteBook);
-		note.setStat(0);
-		note.setCreateDate(now);
-		note.setLastEditDate(now);
-		note.setNbid(noteBook.getNbid());
-		note.setUsrid(usrid);
-		noteDao.save(note);
-		model.addAttribute("status", "success");
+		//else if it is an old note
+		else {
+			// get the old note
+			Note oldNote = noteDao.loadByArticleid(noteid);
+			//get the old notebook
+			NoteBook oldNoteBook = noteBookDao.loadByNbid(oldNote.getNbid());
+			//if new notebook is not the old notebook
+			if(oldNoteBook.getNbid() != noteBook.getNbid()) {
+				oldNoteBook.setNt_Count(oldNoteBook.getNt_Count() - 1);
+				oldNoteBook.setLastEditDate(now);
+				noteBookDao.save(oldNoteBook);
+				noteBook.setNt_Count(noteBook.getNt_Count() + 1);
+				noteBook.setLastEditDate(now);
+				noteBookDao.save(noteBook);	//save the notebook
+			}
+			//update the old note
+			oldNote.setContent(note.getContent());
+			oldNote.setCategory(note.getCategory());
+			oldNote.setNbid(noteBook.getNbid());
+			oldNote.setLastEditDate(now);
+			note = oldNote;
+			noteDao.save(note);
+		}
+		model.addAttribute("articleid", note.getArticleid());
 		logger.info(note.getTitle() + " has been saved.");
 	}
 	

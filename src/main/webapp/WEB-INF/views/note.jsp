@@ -80,19 +80,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div><!-- /navbar wrapper -->
          
             
-            <div class = "note-body container">
+            <div class = "note-body ">
                 <div class = "fill">
                     
                     <div class = "note-aside">
                         
                         <div class = "note-aside-top">
-                            title logo
+                            
                         </div>
                         
                         <div class = "note-aside-body" id = "aside">
                             
                             <div class = boundary>
-                                &nbsp
+                                &nbsp;
                             </div>
                             
                             <div id="list1">
@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <span class="glyphicon glyphicon-th-list"></span>
                                     Note
                                     <span class="pull-right icon glyphicon glyphicon-plus"></span>
-                                    &nbsp
+                                    &nbsp;
                                 </div>
                                 
                             </div>
@@ -112,14 +112,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </table>
                             
                             <div class = "boundary">
-                                &nbsp
+                                &nbsp;
                             </div>
                             
                             <div id="list2">
                                 
                                 <div class="btn btn-primary title-font hand-cursor">
                                     <span class="glyphicon glyphicon-th-list"></span>
-                                    Time&nbsp&nbsp&nbsp
+                                    Time&nbsp;&nbsp;&nbsp;
                                 </div>
                             </div>
                             
@@ -129,13 +129,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </table>
                             
                             <div class = boundary>
-                                &nbsp
+                                &nbsp;
                             </div>
                             
                             <div id="list3">
                                 <div class="btn btn-primary title-font hand-cursor" data-toggle="collapse" data-target="#collapse3" data-parent="#aside">
                                     <span class="glyphicon glyphicon-th-list"></span>
-                                    Recycle&nbsp
+                                    Recycle&nbsp;
                                 </div>
                             </div>
                             
@@ -149,15 +149,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     
                     <div class = "note-list">
                         <div class = "note-list-top">
+                        
                             <div>
-                                create a new note
+                               
+                        		<button id="create" type="button" class = "btn btn-primary">
+                                    &nbsp;&nbsp;create&nbsp;&nbsp;
+                                </button>
+                        		
                             </div>
-                            <div>
-                                totle number of notes
-                            </div>
-                            <div>
-                                search
-                            </div>
+                    
                         </div>
                         
                         <div class = "note-list-body" id = "list4">
@@ -167,30 +167,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                     <div class = "note-content">
                         <div class = "note-content-top">
-                        
-                        	<div class = "note-content-top-element">
-                        		<button id="create" type="button" class = "btn btn-primary btn-lg">
-                                    &nbsp;&nbsp;create&nbsp;&nbsp;
-                                </button>
-                        	</div>
                         	
                         	<div class = "note-content-top-element ">
                             <div>
                             	
-                                <button id="edit" type="button" class = "btn btn-lg btn-primary">
+                                <button id="edit" type="button" class = "btn  btn-primary">
                                     &nbsp;&nbsp;edit&nbsp;&nbsp;&nbsp;
                                 </button>
-                                <button id="save" type="button" class = "btn btn-lg btn-primary">
+                                <button id="save" type="button" class = "btn  btn-primary">
                                     &nbsp;&nbsp;save&nbsp;&nbsp;
                                 </button>
-                                
-                            </div>
-                            <div>
-                                &nbsp;
-                            </div>
-                            <div>
-                                <button id="recycle" type = "button" class = "btn btn-lg btn-primary">
+                                <button id="cancel" type="button" class = "btn  btn-primary">
+                                    &nbsp;&nbsp;cancel&nbsp;&nbsp;
+                                </button>                
+                                <button id="delete" type = "button" class = "btn  btn-primary">
                                     &nbsp;&nbsp;delete&nbsp;&nbsp;
+                                </button>
+                                <button id="recover" type = "button" class = "btn  btn-primary">
+                                    &nbsp;&nbsp;recover&nbsp;&nbsp;
                                 </button>
                             </div>
                             </div>
@@ -201,6 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	Category: <input type = "text"  id = "category" name = "category"/>
                             	NoteBook: <input type = "text" id = "notebook" name = "notebook"/>
                             	<input type = "hidden" id = "curNoteId" name = "curNoteId" />
+                            	<input type = "hidden" id = "ifrecover" name = "ifrecover" />
                             </div>
 
                             <div id="editor">

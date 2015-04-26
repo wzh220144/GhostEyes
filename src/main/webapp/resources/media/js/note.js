@@ -10,8 +10,9 @@ $(function(){
     $("#usrid").hide();
     $("#save").hide();
     $("#edit").hide();
-    $("#recycle").hide();
-    $("#note-meta").hide();
+    $("#cancel").hide();
+    $("#delete").hide();
+    $("#recover").hide();
     
 	//resize function
     $( window ).resize(function() {	
@@ -33,7 +34,7 @@ $(function(){
     }     
     
     //add abstract block
-    function add_abstract(abstract, id, title, lastEditTime, createTime) {
+    function add_abstract(abstract, id, title, lastEditTime, createTime, recover) {
 
         $(abstract).append('<div class = "note-list-content abstract" id = "' + id + '"></div>');
         var nid = abstract + ' #' + id;
@@ -41,8 +42,11 @@ $(function(){
         $(nid).append('<div>Last edit time:' + formatDate(lastEditTime) + '</div>');
         $(nid).append('<div>create time:' + formatDate(createTime) + '</div>');
         $(nid).click(function() {      //click the abstract, then you can see the whole content in content area
+        	if(recover == 1)
+        		$("#recover").show();
+        	$("ifrecover").val(recover);
         	$("#edit").show();
-            $("#recycle").show();
+            $("#delete").show();
             $("#note-meta").show();
             $("#curNoteId").val(id);
             $.getJSON("/ghosteyes/note/" + id + ".json", function(data) {
@@ -68,7 +72,7 @@ $(function(){
         	$('#list4').html('');
         	$.getJSON("/ghosteyes/note/title/" + $("#usrid").html() + "/" + id + "/all.json", function(data) {
         		$.each(data.notes, function(i, item) {
-        			add_abstract('#list4', item.articleid, item.title, item.lastEditDate, item.createDate);
+        			add_abstract('#list4', item.articleid, item.title, item.lastEditDate, item.createDate, 0);
         		});
         	});
         });
@@ -90,7 +94,7 @@ $(function(){
     	$('#list4').html('');
     	$.getJSON("/ghosteyes/note/" + $("#usrid").html() + "/time.json", function(data) {
     		$.each(data.notes, function(i, item) {
-    			add_abstract('#list4', item.articleid, item.title, item.lastEditDate, item.createDate);
+    			add_abstract('#list4', item.articleid, item.title, item.lastEditDate, item.createDate, 0);
     		});
     	});
     }
@@ -100,7 +104,7 @@ $(function(){
     	$('#list4').html('');
     	$.getJSON("/ghosteyes/note/" + $("#usrid").html() + "/recycle.json", function(data) {
     		$.each(data.notes, function(i, item) {
-    			add_abstract('#list4', item.articleid, item.title, item.lastEditDate, item.createDate);
+    			add_abstract('#list4', item.articleid, item.title, item.lastEditDate, item.createDate, 1);
     		});
     	});
     }
@@ -108,13 +112,13 @@ $(function(){
     //refresh
     function refresh(list) {
     	if(list == 1) {
-    		loadNoteBook("#note-name1");
+    		loadNoteBook();
     	}
     	else if(list == 2) {
-    		loadNotesByTime("#note-name2");
+    		loadNotesByTime();
     	}
-    	else if(lsit == 3) {
-    		loadNotesByTime("#note-name2");
+    	else if(list == 3) {
+    		loadNotesInRecycle();
     	}
     }
     
@@ -122,12 +126,12 @@ $(function(){
     
   //*************************************event triggered by click****************************************//
     
-    //the function when hit recycle button
-    $("#recycle").click(function() {
+    //the function when hit delete button
+    $("#delete").click(function() {
     	var id = $("#curNoteId").val();
     	$.ajax({	//send note to server
 			type : "POST",
-			url : "/ghosteyes/note/recycle/" + id + ".json",
+			url : "/ghosteyes/note/delete/" + id + ".json",
 			dataType : "json",
 			data : {},
 			success : function(data) {		//if success, update page
@@ -135,6 +139,13 @@ $(function(){
 			},
 		});
     	refresh(curList);
+    	$("#title").val('');
+		$("#category").val('');
+		$("#notebook").val('');
+		$("#editor").html('');
+		$("#delete").hide();
+		$("#edit").hide();
+		$("recover").hide();
     });
     
     //the function when hit create button
@@ -142,13 +153,16 @@ $(function(){
     	var h = $("#editor").height();
         $("#editor").summernote({height: h});
         $("#edit").hide();
-        $("#recycle").hide();
+        $("recover").hide();
+        $("#delete").hide();
         $("#save").show();
         $("#note-meta").show();
         $("#title").val('');
 		$("#category").val('');
 		$("#notebook").val('');
 		$("#editor").code('');
+		$("cancel").show();
+		$("#curNoteId").val(-1);
     });
     
     //the function when hit edit button
@@ -158,12 +172,15 @@ $(function(){
         $("#editor").summernote({height: h});
         $("#editor").code(HTML);
         $("#edit").hide();
-        $("#recycle").hide();
+        $("#delete").hide();
         $("#save").show();
+        $("cancel").show();
+        $("recover").hide();
     });
     
     //the function when hit save button
     $("#save").click(function() {		//save a note
+    	var noteid = $("#curNoteId").val();
     	$.ajax({	//send note to server
 			type : "POST",
 			url : "/ghosteyes/note.json",
@@ -173,16 +190,35 @@ $(function(){
 				"title":$("#title").val(),
 				"category":$("#category").val(),
 				"notebook":$("#notebook").val(),
-				"usrid":$("#usrid").html()
+				"usrid":$("#usrid").html(),
+				"noteid":noteid
 			},
 			success : function(data) {		//if success, update page
-				
+				$("#curNoteId").val(data.articleid);
 			},
 		});
         $("#edit").show();
-        $("#recycle").show();
+        $("#delete").show();
         $("#save").hide();
         $("#editor").destroy();
+        if($("#ifrecover").val() == 1)
+        	$("#recover").show();
+    });
+    
+    $("#recover").click( function() {
+    	var id = $("#curNoteId").val();
+    	$.ajax({	//send note to server
+			type : "POST",
+			url : "/ghosteyes/note/recover/" + id + ".json",
+			dataType : "json",
+			data : {},
+			success : function(data) {		//if success, update page
+
+			},
+		});
+    	$("#edit").hide();
+        $("#delete").hide();
+        $("#recover").hide();
     });
     
     $("#list1").click(function() {      //Notes sorted by the name of notebook

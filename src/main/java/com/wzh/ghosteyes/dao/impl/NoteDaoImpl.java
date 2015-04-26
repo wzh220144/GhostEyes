@@ -1,6 +1,8 @@
 package com.wzh.ghosteyes.dao.impl;
 
+import java.util.Date;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -84,6 +86,8 @@ public class NoteDaoImpl extends BaseDao implements NoteDao {
 	//recycle a note
 	public boolean recycle(Note note) {
 		Session session = getcurSession();
+		Date now = new Date();
+		note.setLastEditDate(now);
 		note.setStat(1);
 		session.saveOrUpdate(note);
 		return true;
